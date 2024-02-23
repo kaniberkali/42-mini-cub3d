@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:07:48 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/17 15:15:12 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:22:03 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,78 @@
 #define LIBRARY_H
 
 #include "mlx/mlx.h"
-#include "key_macos.h"
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
 
+# define TRUE 1
+# define FALSE 0
+# define K_A 0
+# define K_D 2
+# define K_W 13
+# define K_S 1
+# define K_AR_L 123
+# define K_AR_R 124
+# define K_ESC 53
 #define X_EVENT_KEY_PRESS 2
 #define X_EVENT_KEY_RELEASE 3
-#define texWidth 64
-#define texHeight 64
-#define mapWidth 24
-#define mapHeight 24
-#define width 1024
-#define height 800
+#define TEXTURE_WIDTH 64
+#define TEXTURE_HEIGHT 64
+#define MAP_WIDTH 24
+#define MAP_HEIGHT 24
+#define WINDOW_WIDTH 1024
+#define WINDOW_HEIGHT 800
+
+typedef struct s_ray_casting
+{
+	int		mapx;
+	int		mapy;
+	int		stepx;
+	int		stepy;
+	int		side;
+	double	camera_x;
+	double	ray_dirx;
+	double	ray_diry;
+	double	side_distx;
+	double	side_disty;
+	double	delta_distx;
+	double	delta_disty;
+	double	wall_dist;
+}				t_ray_casting;
+
+typedef struct s_calc_vars
+{
+	int		line_height;
+	int		draw_start;
+	int		draw_end;
+	double	wall_x;
+	int		tex_x;
+	double	step;
+	double	tex_pos;
+	int		tex_y;
+	int		color;
+}	t_calc_vars;
 
 typedef struct s_img
 {
-	void *img;
-	int *data;
+	void	*img;
+	int		*data;
 
-	int size_l;
-	int bpp;
-	int endian;
-	int img_width;
-	int img_height;
-} t_img;
+	int		size_l;
+	int		bpp;
+	int		endian;
+	int		img_width;
+	int		img_height;
+}	t_img;
 
 typedef struct s_key
 {
-	int a;
-	int w;
-	int s;
-	int d;
-	int esc;
+	int	a;
+	int	w;
+	int	s;
+	int	d;
+	int	esc;
 	int	left;
 	int	right;
 } t_key;
@@ -79,22 +117,6 @@ typedef struct s_game
 	double 		rotation_speed;
 } t_game;
 
-typedef struct s_ray_casting
-{
-	int		mapx;
-	int		mapy;
-	int		stepx;
-	int		stepy;
-	int		side;
-	double	camera_x;
-	double	ray_dirx;
-	double	ray_diry;
-	double	side_distx;
-	double	side_disty;
-	double	delta_distx;
-	double	delta_disty;
-	double	wall_dist;
-}				t_ray_casting;
 
 void key_update(t_game *game);
 void load_image(t_game *game, int *texture, char *path, t_img *img);
@@ -109,8 +131,27 @@ t_ray_casting	ray_init(t_game *game, int x);
 int	ray_get_texture_id(t_ray_casting ray);
 void calc(t_game *game);
 
+void	move_vertical(t_game *game);
+void	move_horizontal(t_game *game);
+void	rotate_rigth(t_game *game);
+void	rotate_left(t_game *game);
 
-static int worldMap[mapWidth][mapHeight] =
+int create_window(t_game *game);
+int create_texture(t_game *game);
+
+
+double	set_wall_x(t_ray_casting *ray,t_game *game);
+int		set_draw_end(int line_height);
+int		set_draw_start(int line_height);
+void	calc_floor_ceiling(t_game *game, int floor, int ceiling);
+t_ray_casting ray_init(t_game *game, int x);
+void free_window(t_game *game);
+void free_texture(t_game *game);
+
+void	first_init(t_game *game);
+void	load_mlx(t_game *game);
+
+static int worldMap[MAP_WIDTH][MAP_HEIGHT] =
 	{
 		{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 		{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},

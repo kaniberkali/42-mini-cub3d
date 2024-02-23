@@ -1,32 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/06/29 20:28:54 by yohlee            #+#    #+#             */
-/*   Updated: 2024/02/17 15:14:40 by akaniber         ###   ########.fr       */
+/*   Created: 2024/02/23 11:45:16 by akaniber          #+#    #+#             */
+/*   Updated: 2024/02/23 13:22:52 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "library.h"
 
-int	main(void)
+void	free_window(t_game *game)
 {
-	t_game	game;
-	int		check_1;
-	int		check_2;
+	int	i;
 
-	game.render.mlx = mlx_init();
-	first_init(&game);
-	check_1 = create_window(&game);
-	if (check_1 == -1)
-		return (-1);
-	memset(&game.key, 0, sizeof(game.key));
-	check_2 = create_texture(&game);
-	if (check_2 == -1)
-		return (-1);
-	load_texture(&game);
-	load_mlx(&game);
+	i = 0;
+	while (i < WINDOW_HEIGHT)
+	{
+		free(game->window[i]);
+		i++;
+	}
+	free(game->window);
+	game->window = NULL;
+}
+
+void	free_texture(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i < 11)
+	{
+		free(game->texture[i]);
+		i++;
+	}
+	free(game->texture);
+	game->texture = NULL;
 }
