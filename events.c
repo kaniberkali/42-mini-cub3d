@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:09:04 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/23 13:17:23 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:12:53 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	key_press(int key, t_game *game)
 	{
 		free_window(game);
 		free_texture(game);
-		memset(&game->key, '\0', sizeof(game->key));
+		free_map(game);
 		mlx_destroy_window(game->render.mlx, game->render.window);
 		exit(0);
 	}

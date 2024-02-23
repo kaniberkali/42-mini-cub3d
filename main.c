@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/06/29 20:28:54 by yohlee            #+#    #+#             */
-/*   Updated: 2024/02/17 15:14:40 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:13:16 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(void)
 
 	game.render.mlx = mlx_init();
 	first_init(&game);
+	create_map(&game);
 	check_1 = create_window(&game);
 	if (check_1 == -1)
 		return (-1);

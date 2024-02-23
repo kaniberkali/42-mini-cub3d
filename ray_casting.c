@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/17 15:14:24 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/23 13:24:07 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:59:27 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ray_get_texture_id(t_ray_casting ray)
 
 void	draw_column(t_game *game, int x, t_ray_casting *ray)
 {
-	t_calc_vars	calc_vars;
+	t_ray_casting	calc_vars;
 	int			y;
 
 	calc_vars.line_height = (int)(WINDOW_HEIGHT / ray->wall_dist);

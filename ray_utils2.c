@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:53:05 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/23 13:24:31 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:14:32 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ t_ray_casting	ray_init_2(t_game *game, t_ray_casting ray)
 			ray.mapy += ray.stepy;
 			ray.side = 1;
 		}
-		if (worldMap[ray.mapx][ray.mapy] > 0)
+		if (game->map[ray.mapx][ray.mapy] == WALL)
 			hit = 1;
 	}
 	ray.wall_dist = calc_wall_dist(&ray, game);

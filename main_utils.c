@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:47:47 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/23 13:23:30 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:25:22 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int	close_prog(t_game *game)
 void	load_mlx(t_game *game)
 {
 	game->render.window = mlx_new_window(game->render.mlx, WINDOW_WIDTH,
-			WINDOW_HEIGHT, "mlx");
-	game->img.img = mlx_new_image(game->render.mlx, WINDOW_WIDTH, WINDOW_HEIGHT);
+			WINDOW_HEIGHT, "https://kaniberk.com");
+	game->img.img = mlx_new_image(game->render.mlx, WINDOW_WIDTH \
+	, WINDOW_HEIGHT);
 	game->img.data = (int *)mlx_get_data_addr(game->img.img, &game->img.bpp,
 			&game->img.size_l, &game->img.endian);
 	mlx_loop_hook(game->render.mlx, &main_loop, game);

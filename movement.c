@@ -6,7 +6,7 @@
 /*   By: akaniber <akaniber@student.42kocaeli.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 11:48:21 by akaniber          #+#    #+#             */
-/*   Updated: 2024/02/23 13:16:42 by akaniber         ###   ########.fr       */
+/*   Updated: 2024/02/23 14:27:02 by akaniber         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,22 @@ void	move_vertical(t_game *game)
 {
 	if (game->key.w)
 	{
-		if (!worldMap[(int)(game->player.x
-				+ game->direction.x * game->move_speed)][(int)(game->player.y)])
+		if (game->map[(int)(game->player.x
+				+ game->direction.x * game->move_speed)]
+				[(int)(game->player.y)] == SPACE)
 			game->player.x += game->direction.x * game->move_speed;
-		if (!worldMap[(int)(game->player.x)][(int)(game->player.y
-				+ game->direction.y * game->move_speed)])
+		if (game->map[(int)(game->player.x)][(int)(game->player.y
+				+ game->direction.y * game->move_speed)] == SPACE)
 			game->player.y += game->direction.y * game->move_speed;
 	}
 	if (game->key.s)
 	{
-		if (!worldMap[(int)(game->player.x
-				- game->direction.x * game->move_speed)][(int)(game->player.y)])
+		if (game->map[(int)(game->player.x
+				- game->direction.x * game->move_speed)]
+				[(int)(game->player.y)] == SPACE)
 			game->player.x -= game->direction.x * game->move_speed;
-		if (!worldMap[(int)(game->player.x)][(int)(game->player.y
-				- game->direction.y * game->move_speed)])
+		if (game->map[(int)(game->player.x)][(int)(game->player.y
+				- game->direction.y * game->move_speed)] == SPACE)
 			game->player.y -= game->direction.y * game->move_speed;
 	}
 }
@@ -38,20 +40,22 @@ void	move_horizontal(t_game *game)
 {
 	if (game->key.a)
 	{
-		if (!worldMap[(int)(game->player.x
-				- game->direction.y * game->move_speed)][(int)(game->player.y)])
+		if (game->map[(int)(game->player.x
+				- game->direction.y * game->move_speed)]
+				[(int)(game->player.y)] == SPACE)
 			game->player.x -= game->direction.y * game->move_speed;
-		if (!worldMap[(int)(game->player.x)][(int)(game->player.y
-				+ game->direction.x * game->move_speed)])
+		if (game->map[(int)(game->player.x)][(int)(game->player.y
+				+ game->direction.x * game->move_speed)] == SPACE)
 			game->player.y += game->direction.x * game->move_speed;
 	}
 	if (game->key.d)
 	{
-		if (!worldMap[(int)(game->player.x
-				+ game->direction.y * game->move_speed)][(int)(game->player.y)])
+		if (game->map[(int)(game->player.x
+				+ game->direction.y * game->move_speed)]
+				[(int)(game->player.y)] == SPACE)
 			game->player.x += game->direction.y * game->move_speed;
-		if (!worldMap[(int)(game->player.x)][(int)(game->player.y
-				- game->direction.x * game->move_speed)])
+		if (game->map[(int)(game->player.x)][(int)(game->player.y
+				- game->direction.x * game->move_speed)] == SPACE)
 			game->player.y -= game->direction.x * game->move_speed;
 	}
 }
